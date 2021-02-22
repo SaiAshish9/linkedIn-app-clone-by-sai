@@ -1,16 +1,31 @@
-# linkedIn
+## Hide debug banner
 
-A new Flutter project.
+```
+MateralApp(
+    debugShowCheckedModeBanner:false
+    ...
+```
 
-## Getting Started
+## Splash Screen Configuration
 
-This project is a starting point for a Flutter application.
+```
+android -> app -> res -> values -> mipmap
+-> splash.png
 
-A few resources to get you started if this is your first Flutter project:
+drawable -> launch_background ->
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+<item>
+<bitmap
+android:src="@mipmac/splash"
+android:gravity="fill"
+/>
+</item>
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```
+
+## Portrait Orientation
+
+```
+<activity
+  android:screenOrientation="portratit"
+```
