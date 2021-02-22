@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:linkedIn/constants/colors.dart';
 
 class Circle extends StatelessWidget {
   const Circle({Key key, @required this.width, @required this.url})
@@ -14,7 +15,7 @@ class Circle extends StatelessWidget {
       height: width * 0.09,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: Color(0xFFe9e6dd),
+        color: kHomePageBackground,
         image: DecorationImage(image: NetworkImage(url), fit: BoxFit.fill),
       ),
     );

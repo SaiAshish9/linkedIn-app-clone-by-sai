@@ -27,5 +27,5 @@ android:gravity="fill"
 
 ```
 <activity
-  android:screenOrientation="portratit"
+  android:screenOrientation="portrait"
 ```

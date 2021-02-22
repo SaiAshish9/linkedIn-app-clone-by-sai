@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:linkedIn/constants/colors.dart';
 import 'package:linkedIn/widgets/nav.dart';
 
 void main() => runApp(MyApp());
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
           statusBarIconBrightness: Brightness.dark,
         ),
         child: Scaffold(
-          backgroundColor: Color(0xFFe9e6dd),
+          backgroundColor: kHomePageBackground,
           body: Column(
             children: [Nav()],
           ),
