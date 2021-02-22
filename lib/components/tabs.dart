@@ -28,7 +28,7 @@ class _FooterState extends State<Footer> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     controller =
-        AnimationController(duration: Duration(seconds: 1), vsync: this);
+        AnimationController(duration: Duration(milliseconds: 400), vsync: this);
     animation = CurvedAnimation(parent: controller, curve: Curves.decelerate);
     controller.reverse();
     controller.addListener(() {
