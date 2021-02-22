@@ -29,6 +29,29 @@ class Nav extends StatelessWidget {
                     'https://media-exp1.licdn.com/dms/image/C5103AQHgT7zgMfogQg/profile-displayphoto-shrink_100_100/0/1571595910289?e=1619654400&v=beta&t=omQapUdHmJkLDptbnopvIHZcpPkuHGd2uPpxLMPWilg'),
             Expanded(
               child: Container(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.search,
+                            size: 21,
+                          ),
+                          SizedBox(width: 4),
+                          Text("Search")
+                        ],
+                      ),
+                      Icon(
+                        Icons.qr_code,
+                        size: 18,
+                      )
+                    ],
+                  ),
+                ),
                 height: width * 0.08,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(3),
