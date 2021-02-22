@@ -28,7 +28,7 @@ class _FooterState extends State<Footer> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     controller =
-        AnimationController(duration: Duration(milliseconds: 200), vsync: this);
+        AnimationController(duration: Duration(seconds: 1), vsync: this);
     animation = CurvedAnimation(parent: controller, curve: Curves.decelerate);
     controller.reverse();
     controller.addListener(() {
@@ -62,11 +62,14 @@ class _FooterState extends State<Footer> with SingleTickerProviderStateMixin {
                 height: 9,
                 width: 9 * animation.value,
                 right: 2.5,
-                child: Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(width: 1, color: Colors.white),
-                      color: Color(0xFFd3342f),
-                      shape: BoxShape.circle),
+                child: Opacity(
+                  opacity: animation.value,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(width: 1, color: Colors.white),
+                        color: Color(0xFFd3342f),
+                        shape: BoxShape.circle),
+                  ),
                 ),
               )
             ],
