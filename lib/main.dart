@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:linkedIn/constants/colors.dart';
-import 'package:linkedIn/widgets/nav.dart';
+
+import 'components/nav.dart';
 
 void main() => runApp(MyApp());
 
