@@ -1,10 +1,8 @@
 package com.example.linkedIn
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.os.PersistableBundle
-import android.view.WindowManager
 import androidx.core.content.ContextCompat
 import io.flutter.embedding.android.FlutterActivity
 
