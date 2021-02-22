@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:linkedIn/widgets/nav.dart';
 
 void main() => runApp(MyApp());
 
@@ -17,7 +18,9 @@ class MyApp extends StatelessWidget {
         ),
         child: Scaffold(
           backgroundColor: Color(0xFFe9e6dd),
-          body: null,
+          body: Column(
+            children: [Nav()],
+          ),
         ),
       ),
     );
