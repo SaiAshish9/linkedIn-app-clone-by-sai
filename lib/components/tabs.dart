@@ -51,6 +51,10 @@ class _FooterState extends State<Footer> with SingleTickerProviderStateMixin {
       elevation: 5.4,
       selectedFontSize: 10,
       unselectedFontSize: 10,
+      selectedLabelStyle:
+          TextStyle(fontFamily: 'SF-UI', fontWeight: FontWeight.w600),
+      unselectedLabelStyle:
+          TextStyle(fontFamily: 'SF-UI', fontWeight: FontWeight.w500),
       type: BottomNavigationBarType.fixed,
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(

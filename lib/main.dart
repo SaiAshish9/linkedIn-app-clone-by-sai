@@ -18,6 +18,13 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+          fontFamily: 'SF-UI',
+          textTheme: ThemeData.light().textTheme.copyWith(
+              bodyText2: TextStyle(
+                  fontFamily: 'SF-UI',
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400))),
       home: AnnotatedRegion<SystemUiOverlayStyle>(
         value: const SystemUiOverlayStyle(
           statusBarIconBrightness: Brightness.dark,

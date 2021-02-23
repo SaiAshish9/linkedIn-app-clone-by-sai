@@ -23,10 +23,7 @@ class Nav extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           // background:
           children: [
-            Circle(
-                width: width,
-                url:
-                    'https://media-exp1.licdn.com/dms/image/C5103AQHgT7zgMfogQg/profile-displayphoto-shrink_100_100/0/1571595910289?e=1619654400&v=beta&t=omQapUdHmJkLDptbnopvIHZcpPkuHGd2uPpxLMPWilg'),
+            Circle(width: width * 0.09, url: kProfilePicURL),
             Expanded(
               child: Container(
                 child: Padding(
@@ -42,7 +39,13 @@ class Nav extends StatelessWidget {
                             size: 21,
                           ),
                           SizedBox(width: 4),
-                          Text("Search")
+                          Text("Search",
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontFamily: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1
+                                      .fontFamily))
                         ],
                       ),
                       Icon(
