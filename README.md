@@ -29,3 +29,9 @@ android:gravity="fill"
 <activity
   android:screenOrientation="portrait"
 ```
+
+## Enabling Expandable BottomModalSheet
+
+```
+isScrollControlled: true,
+```

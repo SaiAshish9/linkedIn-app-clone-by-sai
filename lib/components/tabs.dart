@@ -81,9 +81,21 @@ class _FooterState extends State<Footer> with SingleTickerProviderStateMixin {
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: Icon(_selectedIndex == 1
-              ? Icons.people_alt
-              : Icons.people_alt_outlined),
+          icon: Stack(children: [
+            Icon(_selectedIndex == 1
+                ? Icons.people_alt
+                : Icons.people_alt_outlined),
+            // Positioned(
+            //     top: -3,
+            //     right: 0,
+            //     child: Text(
+            //       "1",
+            //       style: TextStyle(
+            //           color: Color(0xFFd3342f),
+            //           fontWeight: FontWeight.w900,
+            //           fontSize: 13),
+            //     ))
+          ]),
           label: 'My Network',
         ),
         BottomNavigationBarItem(
