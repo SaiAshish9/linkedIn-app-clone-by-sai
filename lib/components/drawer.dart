@@ -12,6 +12,8 @@ class SideBar extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
+    List recentTasks = ['google', 'india'];
+
     return Container(
       height: size.height,
       width: size.width * 0.836,
@@ -21,6 +23,7 @@ class SideBar extends StatelessWidget {
           color: Colors.white,
           padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 width: size.width * 0.836,
@@ -131,9 +134,92 @@ class SideBar extends StatelessWidget {
                   ],
                 ),
               ),
+              Details(
+                  text: Text("Recent", style: kLink), recentTasks: recentTasks),
+              Divider(
+                height: 0,
+              ),
+              Container(
+                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                  child: Text("Groups", style: kActiveLink)),
+              Divider(
+                height: 0,
+              ),
+              Container(
+                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Events", style: kActiveLink),
+                      SizedBox(height: 20),
+                      Row(
+                        children: [
+                          SizedBox(width: 10),
+                          Icon(
+                            Icons.add,
+                            color: Color(0xFF3c3c3c),
+                            size: 20,
+                          ),
+                          SizedBox(width: 8),
+                          Text("Create Event",
+                              style: TextStyle(
+                                  color: kDarkLinkColor,
+                                  fontFamily: "SF-UI",
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14)),
+                        ],
+                      )
+                    ],
+                  )),
+              Divider(
+                height: 0,
+              ),
+              Details(
+                  text: Text("Followed Hashtags", style: kActiveLink),
+                  recentTasks: recentTasks),
+              Divider(
+                height: 0,
+              ),
+              Container(
+                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                  child: Text("Discover more", style: kActiveLink))
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class Details extends StatelessWidget {
+  const Details({
+    Key key,
+    @required this.text,
+    @required this.recentTasks,
+  }) : super(key: key);
+
+  final List recentTasks;
+  final Widget text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          text,
+          SizedBox(height: 10),
+          ...recentTasks
+              .map((x) => Container(
+                  margin: EdgeInsets.only(left: 10, top: 15),
+                  child: Text("#  $x",
+                      style: TextStyle(
+                          color: Color(0xFF3c3c3c),
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600))))
+              .toList(),
+        ],
       ),
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:linkedIn/components/drawer.dart';
-import 'package:linkedIn/components/post.dart';
+import 'package:linkedIn/components/posts.dart';
 import 'package:linkedIn/components/statusList.dart';
 import 'package:linkedIn/components/tabs.dart';
 import 'package:linkedIn/constants/colors.dart';

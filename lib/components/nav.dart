@@ -23,7 +23,11 @@ class Nav extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           // background:
           children: [
-            Circle(width: width * 0.09, url: kProfilePicURL),
+            GestureDetector(
+                onTap: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                child: Circle(width: width * 0.09, url: kProfilePicURL)),
             Expanded(
               child: Container(
                 child: Padding(
