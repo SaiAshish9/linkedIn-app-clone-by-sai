@@ -58,25 +58,30 @@ class _FooterState extends State<Footer> with SingleTickerProviderStateMixin {
       type: BottomNavigationBarType.fixed,
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Stack(
-            children: [
-              Icon(_selectedIndex == 0 ? Icons.home : Icons.home_outlined),
-              Positioned(
-                top: 0,
-                height: 9,
-                width: 9 * animation.value,
-                right: 2.5,
-                child: Opacity(
-                  opacity: animation.value,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(width: 1, color: Colors.white),
-                        color: Color(0xFFd3342f),
-                        shape: BoxShape.circle),
+          icon: Container(
+            // decoration: BoxDecoration(
+            //   border: Border(top: BorderSide(color: Colors.black, width: 3.0)),
+            // ),
+            child: Stack(
+              children: [
+                Icon(_selectedIndex == 0 ? Icons.home : Icons.home_outlined),
+                Positioned(
+                  top: 0,
+                  height: 9,
+                  width: 9 * animation.value,
+                  right: 2.5,
+                  child: Opacity(
+                    opacity: animation.value,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(width: 1, color: Colors.white),
+                          color: Color(0xFFd3342f),
+                          shape: BoxShape.circle),
+                    ),
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
           label: 'Home',
         ),
