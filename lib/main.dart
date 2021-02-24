@@ -9,6 +9,7 @@ import 'package:linkedIn/models/StatusBar.dart';
 import 'package:provider/provider.dart';
 
 import 'components/nav.dart';
+import 'models/Posts.dart';
 
 void main() => runApp(MyApp());
 
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => StatusBarModel()),
+        ChangeNotifierProvider(create: (context) => PostModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -40,7 +42,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final bool loading = !true;
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<PostModel>(context, listen: false).stopLoading();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,9 +68,9 @@ class _HomeState extends State<Home> {
             children: [
               Nav(),
               StatusList(),
-              loading
+              Provider.of<PostModel>(context).loading
                   ? Container(
-                      margin: EdgeInsets.only(top: 10),
+                      margin: EdgeInsets.only(top: 18),
                       padding: EdgeInsets.all(7),
                       decoration: BoxDecoration(boxShadow: [
                         BoxShadow(
