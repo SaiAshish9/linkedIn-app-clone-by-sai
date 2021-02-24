@@ -2,15 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:linkedIn/components/statusList.dart';
-import 'package:linkedIn/components/tabs.dart';
 import 'package:linkedIn/constants/colors.dart';
 import 'package:linkedIn/models/Posts.dart';
 import 'package:linkedIn/models/StatusBar.dart';
 import 'package:linkedIn/widgets/post.dart';
 import 'package:provider/provider.dart';
 
-import 'drawer.dart';
-import 'nav.dart';
+import '../components/drawer.dart';
+import '../components/nav.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -74,7 +73,6 @@ class _HomeState extends State<Home> {
             ],
           ),
         ),
-        bottomNavigationBar: Footer(),
       ),
     );
   }

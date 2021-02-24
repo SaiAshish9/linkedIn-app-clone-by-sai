@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
+import 'package:linkedIn/components/TabController.dart';
+import 'package:linkedIn/screens/profile.dart';
 import 'package:linkedIn/models/StatusBar.dart';
 import 'package:provider/provider.dart';
-import 'components/home.dart';
 import 'models/Posts.dart';
 
 void main() async {
@@ -28,7 +29,11 @@ class MyApp extends StatelessWidget {
                     fontFamily: 'SF-UI',
                     fontSize: 18,
                     fontWeight: FontWeight.w400))),
-        home: Home(),
+        routes: {
+          "/": (ctx) => TabControllers(),
+          Profile.routeName: (ctx) => Profile()
+        },
+        // home: Home(),
       ),
     );
   }

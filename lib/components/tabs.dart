@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:linkedIn/screens/network.dart';
 
 class Footer extends StatefulWidget {
-  const Footer({
-    Key key,
-  }) : super(key: key);
+  const Footer({Key key, this.onTap}) : super(key: key);
+
+  final onTap;
 
   @override
   _FooterState createState() => _FooterState();
@@ -20,6 +21,7 @@ class _FooterState extends State<Footer> with SingleTickerProviderStateMixin {
     } else {
       controller.forward();
     }
+    widget.onTap(index);
     setState(() {
       _selectedIndex = index;
     });
