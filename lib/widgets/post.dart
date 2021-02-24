@@ -1,14 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:linkedIn/components/model.dart';
 import 'package:linkedIn/constants/colors.dart';
 import 'package:linkedIn/constants/styles.dart';
-import 'package:linkedIn/models/PostOptions.dart';
+import 'package:linkedIn/models/StatusBar.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 
-class Post extends StatelessWidget {
-  const Post({
-    Key key,
-  }) : super(key: key);
+class Post extends StatefulWidget {
+  @override
+  _PostState createState() => _PostState();
+}
 
+changeNavigationColor(Color color, bool dark) async {
+  try {
+    await FlutterStatusbarcolor.setStatusBarColor(color, animate: true);
+    if (dark) {
+      FlutterStatusbarcolor.setStatusBarWhiteForeground(true);
+    } else {
+      FlutterStatusbarcolor.setStatusBarWhiteForeground(false);
+    }
+    // setNavigationBarColor
+  } on PlatformException catch (e) {
+    debugPrint(e.toString());
+  }
+}
+
+class _PostState extends State<Post> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -40,10 +59,17 @@ class Post extends StatelessWidget {
                     ),
                     GestureDetector(
                         onTap: () {
+                          changeNavigationColor(Color(0xFF757575), true);
+                          Provider.of<StatusBarModel>(context, listen: false)
+                              .alterTheme(Colors.black, false);
                           showModalBottomSheet(
                               context: context,
                               isScrollControlled: true,
-                              builder: (context) => Modal());
+                              builder: (context) => Modal()).whenComplete(() {
+                            changeNavigationColor(Colors.white, false);
+                            Provider.of<StatusBarModel>(context, listen: false)
+                                .alterTheme(Colors.white, true);
+                          });
                         },
                         child: Icon(Icons.keyboard_arrow_down))
                   ],
@@ -180,86 +206,6 @@ class Post extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class Modal extends StatelessWidget {
-  List items = [
-    PostOptions(
-        icon: Icon(Icons.bookmark_border_outlined, color: Color(0xFF404040)),
-        title: "Save",
-        description: "Save this item for later"),
-    PostOptions(
-        icon: Icon(Icons.share_outlined, color: Color(0xFF404040)),
-        title: "Share via"),
-    PostOptions(
-        icon: Icon(Icons.cancel, color: Color(0xFF404040)),
-        title: "Unfollow",
-        description: "Stay connected but stop seeing such post's"),
-    PostOptions(
-        icon: Icon(Icons.volume_off, color: Color(0xFF404040)),
-        title: "Mute",
-        description: "Stop seeing such post's"),
-    PostOptions(
-        icon: Icon(Icons.visibility_off, color: Color(0xFF404040)),
-        title: "I don't want to see this",
-        description: "Let us know why don't want to see this post"),
-    PostOptions(
-        icon: Icon(Icons.flag, color: Color(0xFF404040)),
-        title: "Report this post",
-        description: "This post is offensive or the account is hacked"),
-    PostOptions(
-        icon: Icon(Icons.remove_red_eye, color: Color(0xFF404040)),
-        title: "Who can see this post?",
-        description: "Visible to anyone on or off LinkedIn"),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-
-    return Container(
-      margin: EdgeInsets.all(0),
-      padding: EdgeInsets.all(0),
-      decoration: BoxDecoration(
-          color: Color(0xff757575), borderRadius: BorderRadius.circular(0)),
-      child: Container(
-        height: size.height * 0.657,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: null,
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(15), topRight: Radius.circular(15)),
-        ),
-        child: ListView.builder(
-          itemCount: items.length,
-          itemBuilder: (context, index) {
-            final option = items[index];
-            return option.description != null
-                ? ListTile(
-                    onLongPress: () {},
-                    title: Text(
-                      option.title,
-                      style: kReactionTitle,
-                    ),
-                    subtitle: Text(
-                      option.description,
-                      style: kReactionSubTitle,
-                    ),
-                    leading: option.icon,
-                  )
-                : ListTile(
-                    onLongPress: () {},
-                    title: Text(
-                      option.title,
-                      style: kReactionTitle,
-                    ),
-                    leading: option.icon,
-                  );
-          },
-        ),
       ),
     );
   }

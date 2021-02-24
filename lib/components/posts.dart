@@ -6,7 +6,6 @@ class Posts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Column(
       children: [...list.map((x) => Post()).toList()],
     );
