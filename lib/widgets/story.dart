@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:linkedIn/constants/colors.dart';
-import 'package:linkedIn/models/Posts.dart';
-import 'package:provider/provider.dart';
 
 class Story extends StatefulWidget {
-  const Story({Key key, this.index}) : super(key: key);
+  const Story(
+      {Key key,
+      this.data,
+      this.index = 0,
+      this.assetImage = false,
+      this.loading = false})
+      : super(key: key);
 
   final index;
+  final assetImage;
+  final loading;
+  final data;
 
   @override
   _StoryState createState() => _StoryState();
@@ -40,8 +47,8 @@ class _StoryState extends State<Story> with SingleTickerProviderStateMixin {
 
   @override
   void dispose() {
-    super.dispose();
     controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -56,7 +63,7 @@ class _StoryState extends State<Story> with SingleTickerProviderStateMixin {
         ),
         child: Column(children: [
           Transform.scale(
-            scale: Provider.of<PostModel>(context, listen: false).loading
+            scale: widget.loading
                 ? animation.value < 0.6
                     ? animation.value + 0.5
                     : animation.value
@@ -81,18 +88,20 @@ class _StoryState extends State<Story> with SingleTickerProviderStateMixin {
                         border: Border.all(color: Colors.white, width: 2),
                         color: kHomePageBackground,
                         shape: BoxShape.circle,
-                        image: widget.index == 0 &&
-                                !Provider.of<PostModel>(context, listen: false)
-                                    .loading
+                        image: !widget.loading && widget.assetImage
                             ? DecorationImage(
                                 image: AssetImage("assets/images/stories.png"),
                               )
-                            : null))),
+                            : !widget.loading
+                                ? DecorationImage(
+                                    image: NetworkImage(
+                                        widget.data["author"]["image"]))
+                                : null))),
           ),
           SizedBox(height: 10),
-          !Provider.of<PostModel>(context, listen: false).loading
+          !widget.loading
               ? Text(
-                  "Stories",
+                  widget.assetImage ? "Stories" : widget.data["author"]["name"],
                   style: kStoryTag,
                 )
               : Text("")

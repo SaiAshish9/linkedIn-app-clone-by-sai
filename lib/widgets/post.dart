@@ -9,6 +9,9 @@ import 'package:provider/provider.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 
 class Post extends StatefulWidget {
+  const Post({Key key, this.data}) : super(key: key);
+
+  final data;
   @override
   _PostState createState() => _PostState();
 }
@@ -49,10 +52,11 @@ class _PostState extends State<Post> {
                   children: [
                     Row(
                       children: [
-                        Text("Sarthak", style: kPostHiglightedTag),
+                        Text(widget.data["userReaction"],
+                            style: kPostHiglightedTag),
                         SizedBox(width: 4),
                         Text(
-                          "celebrates this",
+                          widget.data["userReactionText"],
                           style: kPostLightTag,
                         )
                       ],
@@ -83,18 +87,17 @@ class _PostState extends State<Post> {
                 Row(
                   children: [
                     Container(
-                      height: size.height * 0.08,
-                      width: size.height * 0.08,
+                      height: size.height * 0.06,
+                      width: size.height * 0.06,
                       decoration: BoxDecoration(
                         color: kHomePageBackground,
                         shape: BoxShape.circle,
                         image: DecorationImage(
-                            image: NetworkImage(
-                                "https://media-exp1.licdn.com/dms/image/C4D0BAQHiNSL4Or29cg/company-logo_200_200/0/1519856215226?e=1622073600&v=beta&t=p9zXj2dj6BXsOGH65sw6Sw4iWqAg_h4q38ABubR4a2A"),
+                            image: NetworkImage(widget.data["author"]["image"]),
                             fit: BoxFit.cover),
                       ),
                     ),
-                    SizedBox(width: 5),
+                    SizedBox(width: 10),
                     Container(
                       height: size.height * 0.08,
                       child: Column(
@@ -102,18 +105,18 @@ class _PostState extends State<Post> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Google",
+                            widget.data["author"]["name"],
                             style: kPostHiglightedTag,
                           ),
                           Text(
-                            "20,701,240 followers",
+                            widget.data["author"]["headline"],
                             style: kPostSmallText,
                           ),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
-                                "1w",
+                                widget.data["published"],
                                 style: kPostSmallText,
                               ),
                               SizedBox(
@@ -148,9 +151,9 @@ class _PostState extends State<Post> {
                 color: kHomePageBackground,
                 image: DecorationImage(
                     image: NetworkImage(
-                      "https://media-exp1.licdn.com/dms/image/C5622AQEcCkjOSS3xJg/feedshare-image-offsite-ads_350_624/0/1613995014067?e=1617235200&v=beta&t=ukgWOspqqx8TBnU99KhVnUL2f-EdbOkg_sVtRatoLyM",
+                      widget.data["image"],
                     ),
-                    fit: BoxFit.cover),
+                    fit: BoxFit.fill),
               )),
           Padding(
             padding: EdgeInsets.symmetric(
@@ -167,11 +170,11 @@ class _PostState extends State<Post> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "1,616",
+                          widget.data["reactions"],
                           style: kPostSmallText,
                         ),
                         Text(
-                          "28 comments",
+                          "${widget.data['commentCount']} comments",
                           style: kPostSmallText,
                         ),
                       ],

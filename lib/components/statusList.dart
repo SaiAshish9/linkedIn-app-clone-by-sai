@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:linkedIn/models/Posts.dart';
 import 'package:linkedIn/widgets/ownStory.dart';
 import 'package:linkedIn/widgets/story.dart';
+import 'package:provider/provider.dart';
 
-class StatusList extends StatelessWidget {
+class StatusList extends StatefulWidget {
+  @override
+  _StatusListState createState() => _StatusListState();
+}
+
+class _StatusListState extends State<StatusList> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -17,9 +24,31 @@ class StatusList extends StatelessWidget {
         child: Row(
           children: [
             OwnStory(),
-            ...list
-                .map((x) => Story(key: ValueKey(x), index: list.indexOf(x)))
-                .toList()
+            !Provider.of<PostModel>(context, listen: false).loading
+                ? Row(
+                    children: [
+                      Story(
+                        assetImage: true,
+                      ),
+                      ...Provider.of<PostModel>(context, listen: false)
+                          .statusList
+                          .map((x) => Story(
+                                data: x,
+                              ))
+                          .toList(),
+                      SizedBox(width: size.width * 0.06)
+                    ],
+                  )
+                : Row(
+                    children: [
+                      ...list
+                          .map((x) => Story(
+                              loading: true,
+                              key: ValueKey(x),
+                              index: list.indexOf(x)))
+                          .toList()
+                    ],
+                  )
           ],
         ),
       ),

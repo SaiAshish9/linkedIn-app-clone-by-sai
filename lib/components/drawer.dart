@@ -134,55 +134,64 @@ class SideBar extends StatelessWidget {
                   ],
                 ),
               ),
-              Details(
-                  text: Text("Recent", style: kLink), recentTasks: recentTasks),
-              Divider(
-                height: 0,
-              ),
-              Container(
-                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                  child: Text("Groups", style: kActiveLink)),
-              Divider(
-                height: 0,
-              ),
-              Container(
-                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Events", style: kActiveLink),
-                      SizedBox(height: 20),
-                      Row(
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Details(
+                      text: Text("Recent", style: kLink),
+                      recentTasks: recentTasks),
+                  Divider(
+                    height: 0,
+                  ),
+                  Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                      child: Text("Groups", style: kActiveLink)),
+                  Divider(
+                    height: 0,
+                  ),
+                  Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(width: 10),
-                          Icon(
-                            Icons.add,
-                            color: Color(0xFF3c3c3c),
-                            size: 20,
-                          ),
-                          SizedBox(width: 8),
-                          Text("Create Event",
-                              style: TextStyle(
-                                  color: kDarkLinkColor,
-                                  fontFamily: "SF-UI",
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14)),
+                          Text("Events", style: kActiveLink),
+                          SizedBox(height: 20),
+                          Row(
+                            children: [
+                              SizedBox(width: 10),
+                              Icon(
+                                Icons.add,
+                                color: Color(0xFF3c3c3c),
+                                size: 20,
+                              ),
+                              SizedBox(width: 8),
+                              Text("Create Event",
+                                  style: TextStyle(
+                                      color: kDarkLinkColor,
+                                      fontFamily: "SF-UI",
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14)),
+                            ],
+                          )
                         ],
-                      )
-                    ],
-                  )),
-              Divider(
-                height: 0,
+                      )),
+                  Divider(
+                    height: 0,
+                  ),
+                  Details(
+                      text: Text("Followed Hashtags", style: kActiveLink),
+                      recentTasks: recentTasks),
+                  Divider(
+                    height: 0,
+                  ),
+                  Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                      child: Text("Discover more", style: kActiveLink))
+                ],
               ),
-              Details(
-                  text: Text("Followed Hashtags", style: kActiveLink),
-                  recentTasks: recentTasks),
-              Divider(
-                height: 0,
-              ),
-              Container(
-                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                  child: Text("Discover more", style: kActiveLink))
             ],
           ),
         ),
@@ -212,7 +221,7 @@ class Details extends StatelessWidget {
           SizedBox(height: 10),
           ...recentTasks
               .map((x) => Container(
-                  margin: EdgeInsets.only(left: 10, top: 15),
+                  margin: EdgeInsets.only(left: 17, top: 15),
                   child: Text("#  $x",
                       style: TextStyle(
                           color: Color(0xFF3c3c3c),
