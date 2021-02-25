@@ -2,18 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:graphql/client.dart';
 
 class PostModel with ChangeNotifier {
-  final _httpLink = HttpLink('https://b00d53df849b.ngrok.io' + '/graphql');
+  final _httpLink = HttpLink('https://55585ced3339.ngrok.io' + '/graphql');
   bool _loading = true;
   List _posts = [];
   List _statusList = [];
+  List _notifications = [];
+
+  fetchData(String fetchData) async {
+    final GraphQLClient client = GraphQLClient(
+      cache: GraphQLCache(),
+      link: _httpLink,
+    );
+    final QueryOptions options = QueryOptions(document: gql(fetchData));
+    final QueryResult result = await client.query(options);
+    return result;
+  }
 
   stopLoading() async {
     load() async {
-      final GraphQLClient client = GraphQLClient(
-        cache: GraphQLCache(),
-        link: _httpLink,
-      );
-      const String fetchData = r'''
+      const String data = r'''
       query posts {
             posts{
             id
@@ -41,8 +48,7 @@ class PostModel with ChangeNotifier {
     }
 }
     ''';
-      final QueryOptions options = QueryOptions(document: gql(fetchData));
-      final QueryResult result = await client.query(options);
+      final QueryResult result = await fetchData(data);
       if (result.hasException) {
         print(result.exception.toString());
       } else {
@@ -61,12 +67,38 @@ class PostModel with ChangeNotifier {
     // return Timer(Duration(seconds: 5), load);
   }
 
+  fetchNotifications() async {
+    const String data = r'''
+     query notifications{
+         notifications{
+           id
+           image
+           text1
+           text2
+           text3
+           published
+        }
+      }
+    ''';
+    _loading = true;
+    final QueryResult result = await fetchData(data);
+    _loading = false;
+    final List<dynamic> repositories =
+        result.data['notifications'] as List<dynamic>;
+    _notifications = repositories;
+    notifyListeners();
+  }
+
   List get posts {
     return _posts;
   }
 
   List get statusList {
     return _statusList;
+  }
+
+  List get notifications {
+    return _notifications;
   }
 
   bool get loading {
