@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:graphql/client.dart';
 
 class PostModel with ChangeNotifier {
-  final _httpLink = HttpLink('https://55585ced3339.ngrok.io' + '/graphql');
+  final _httpLink = HttpLink('https://88717c687e4f.ngrok.io' + '/graphql');
   bool _loading = true;
   List _posts = [];
   List _statusList = [];
   List _notifications = [];
+  List _recommendations = [];
 
   fetchData(String fetchData) async {
     final GraphQLClient client = GraphQLClient(
@@ -67,6 +68,28 @@ class PostModel with ChangeNotifier {
     // return Timer(Duration(seconds: 5), load);
   }
 
+  fetchRecommendations() async {
+    const String data = r'''
+     query recommendations{
+         recommendations{
+           id
+           image
+           title
+           company
+           location
+           easyApply
+        }
+      }
+    ''';
+    _loading = true;
+    final QueryResult result = await fetchData(data);
+    _loading = false;
+    final List<dynamic> repositories =
+        result.data['recommendations'] as List<dynamic>;
+    _recommendations = repositories;
+    notifyListeners();
+  }
+
   fetchNotifications() async {
     const String data = r'''
      query notifications{
@@ -99,6 +122,10 @@ class PostModel with ChangeNotifier {
 
   List get notifications {
     return _notifications;
+  }
+
+  List get recommendations {
+    return _recommendations;
   }
 
   bool get loading {
