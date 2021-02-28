@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:linkedIn/constants/colors.dart';
+import 'package:linkedIn/screens/profile.dart';
 import 'package:linkedIn/widgets/Circle.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -65,13 +66,20 @@ class SideBar extends StatelessWidget {
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            "View Profile",
-                                            style: TextStyle(
-                                                color: kDarkLinkColor,
-                                                fontFamily: "SF-UI",
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 13),
+                                          GestureDetector(
+                                            onTap: () {
+                                              Navigator.of(context)
+                                                  .pushReplacementNamed(
+                                                      Profile.routeName);
+                                            },
+                                            child: Text(
+                                              "View Profile",
+                                              style: TextStyle(
+                                                  color: kDarkLinkColor,
+                                                  fontFamily: "SF-UI",
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 13),
+                                            ),
                                           ),
                                           SizedBox(
                                             width: 7,

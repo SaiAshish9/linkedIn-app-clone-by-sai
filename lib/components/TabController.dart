@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:linkedIn/models/Footer.dart';
 import 'package:linkedIn/screens/createPost.dart';
 import 'package:linkedIn/screens/home.dart';
 import 'package:linkedIn/screens/jobs.dart';
 import 'package:linkedIn/screens/network.dart';
 import 'package:linkedIn/components/tabs.dart';
 import 'package:linkedIn/screens/notifications.dart';
+import 'package:provider/provider.dart';
 
 class TabControllers extends StatefulWidget {
   @override
@@ -30,7 +32,9 @@ class _TabControllersState extends State<TabControllers> {
       child: Scaffold(
         backgroundColor: Colors.white,
         body: pages[_index],
-        bottomNavigationBar: Footer(onTap: _selectPage),
+        bottomNavigationBar: Provider.of<FooterModel>(context).display
+            ? Footer(onTap: _selectPage)
+            : null,
       ),
     );
   }

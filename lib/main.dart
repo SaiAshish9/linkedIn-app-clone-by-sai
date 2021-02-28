@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:linkedIn/components/TabController.dart';
+import 'package:linkedIn/models/Footer.dart';
 import 'package:linkedIn/screens/profile.dart';
 import 'package:linkedIn/models/StatusBar.dart';
 import 'package:provider/provider.dart';
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => StatusBarModel()),
         ChangeNotifierProvider(create: (context) => PostModel()),
+        ChangeNotifierProvider(create: (context) => FooterModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
