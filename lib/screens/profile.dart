@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:linkedIn/constants/colors.dart';
@@ -13,20 +11,48 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  ScrollController _controller;
+  var scrolled = false;
+
+  @override
+  void initState() {
+    _controller = ScrollController();
+    _controller.addListener(_scrollListener);
+    super.initState();
+  }
+
+  void _scrollListener() {
+    if (_controller.offset >= _controller.position.maxScrollExtent / 2 &&
+        !_controller.position.outOfRange) {
+      setState(() {
+        scrolled = true;
+      });
+    }
+    if (_controller.offset <= _controller.position.minScrollExtent / 2 &&
+        !_controller.position.outOfRange) {
+      setState(() {
+        scrolled = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: Color(0xFF0b66c2),
-        child: Icon(Icons.add),
-      ),
+      floatingActionButton: !scrolled
+          ? FloatingActionButton(
+              onPressed: () {},
+              backgroundColor: Color(0xFF0b66c2),
+              child: Icon(Icons.add),
+            )
+          : null,
       body: Container(
         color: kHomePageBackground,
         width: size.width,
         child: SingleChildScrollView(
+          controller: _controller,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -40,7 +66,11 @@ class _ProfileState extends State<Profile> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Icon(Icons.arrow_back),
+                    GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).pushReplacementNamed("/");
+                        },
+                        child: Icon(Icons.arrow_back)),
                     Column(
                       children: [
                         Container(
@@ -115,7 +145,7 @@ class _ProfileState extends State<Profile> {
                                     height: 5,
                                   ),
                                   Text(
-                                    "Spring Framework | Golang | Django | React Native | Angular | Graphql | Flutter | Node.js | Nuxt.js | Gatsby.js | Next.js | Ionic | Vue.js | Nest.js | AWS | Docker | k8s | Flask | PWA | Quasar| C#| ASP.NET| Android| Kotlin",
+                                    "Spring Framework | Golang | Django | React Native | Angular | Graphql | Flutter | Node.js | Nuxt.js | Gatsby.js | Next.js | Ionic | Vue.js | Nest.js | AWS | Docker | k8s | Flask | PWA | Quasar| C#| ASP.NET| Android| Kotlin | 19yrs ",
                                     style: TextStyle(
                                         fontSize: 16, color: Color(0xFF535353)),
                                   ),
