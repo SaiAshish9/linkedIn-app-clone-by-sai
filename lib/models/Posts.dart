@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:graphql/client.dart';
 
 class PostModel with ChangeNotifier {
-  final _httpLink = HttpLink('https://cacba3075a5a.ngrok.io' + '/graphql');
+  final _httpLink = HttpLink('https://2deddd0e13ec.ngrok.io' + '/graphql');
   bool _loading = true;
   List _posts = [];
   List _statusList = [];

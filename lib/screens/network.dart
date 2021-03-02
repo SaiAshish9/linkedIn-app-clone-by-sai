@@ -53,7 +53,7 @@ class _NetworkState extends State<Network> {
             child: Icon(Icons.person_add_alt_1),
           ),
         ),
-        body: Provider.of<PostModel>(context).loading
+        body: !Provider.of<PostModel>(context).loading
             ? Stack(
                 children: [
                   Positioned(
